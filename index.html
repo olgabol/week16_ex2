@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>
+        <h3>Марка</h3>
+        <select class="brand">
+            <option>Выберите марку</option>
+            <option>BMW</option>
+            <option>Audi</option>
+            <option>Volkswagen</option>
+            <option>Honda</option>
+        </select>
+    </div>
+    <div>
+        <h3>Тип топлива</h3>
+        Бензин <input type="radio" name="gas" value="1000" class="fuel">
+        Дизель <input type="radio" name="gas" value="500" class="fuel">
+        Электрический <input type="radio" name="gas" value="2000" class="fuel">
+    </div>
+    <div>
+        <h3>Объем двигателя</h3>
+        <select class="volume">
+            <option>1,5</option>
+            <option>1,6</option>
+            <option>2,4</option>
+            <option>3</option>
+        </select>
+    </div>
+    <div>
+        <h3>Тип кузова</h3>
+        <select class="form">
+            <option>седан</option>
+            <option>хетчбек</option>
+            <option>универсал</option>
+        </select>
+    </div>
+    <div>
+        <h3>Стоимость</h3>
+        <div id="summ"></div>
+        <button class="button">Посчитать</button>
+    </div>
+
+
+
+    <script>
+        let arr = []
+        const btn = document.querySelector('button')
+        let sum = 0
+
+        const selects = document.querySelectorAll('select')
+        selects.forEach((item, index) => {
+            item.addEventListener('change', () => {
+                switch (item.value) {
+                    case 'BMW':
+                        arr[0] = 20000;
+                        break;
+                    case 'Audi':
+                        arr[0] = 18000;
+                        break;
+                    case 'Volkswagen':
+                        arr[0] = 10000;
+                        break;
+                    case 'Honda':
+                        arr[0] = 15000;
+                        break;
+                    case '1,5':
+                        arr[1] = 1000;
+                        break;
+                    case '1,6':
+                        arr[1] = 1500;
+                        break;
+                    case '2':
+                        arr[1] = 2000;
+                        break;
+                    case '3':
+                        arr[1] = 3000;
+                        break;
+                    case 'седан':
+                        arr[2] = 2000;
+                        break;
+                    case 'хетчбек':
+                        arr[2] = 2500;
+                        break;
+                    case 'универсал':
+                        arr[2] = 1000;
+                        break;
+                }
+                console.log(arr);
+            })
+        });
+
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const fuels = document.querySelectorAll('.fuel');
+            fuels.forEach((item, index) => {
+                if (item.checked) {
+                    arr.push(+item.value);
+                }
+            })
+            console.log(arr);
+            arr.forEach(item => {
+                sum = sum + item;
+            })
+            document.getElementById('summ').innerHTML += sum
+        });
+    </script>
+</body>
+
+</html>
